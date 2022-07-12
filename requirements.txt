@@ -1,5 +1,4 @@
 telegram
 requests
-os
 bs4
 time
