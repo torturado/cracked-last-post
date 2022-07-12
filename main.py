@@ -2,9 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import telegram
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
 # you must configure this parameters
 # ---------------------------------
