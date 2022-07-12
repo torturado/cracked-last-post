@@ -2,8 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import telegram
-from telegram import ParseMode
-import os
 
 bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
@@ -50,7 +48,7 @@ while True:
 
         bot.send_message(chat_id=chat_id,
                          text=message,
-                         parse_mode=ParseMode.HTML
+                         parse_mode=telegram.ParseMode.HTML
         )
     sleep(8)
     
