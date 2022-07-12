@@ -1,16 +1,9 @@
-try:
-    import requests
-    from bs4 import BeautifulSoup
-    from time import sleep
-    import telegram
-    from telegram import ParseMode
-    import os
-except ImportError:
-    os.system("pip3 install requests")
-    os.system("pip3 install bs4")
-    os.system("pip3 install time")
-    os.system("pip3 install telegram")
-    os.system("pip3 install os")
+import requests
+from bs4 import BeautifulSoup
+from time import sleep
+import telegram
+from telegram import ParseMode
+import os
 
 bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
