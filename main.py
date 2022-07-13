@@ -31,7 +31,7 @@ headers = {
 last_title = ""
 
 while True:
-    response = requests.get(url, params=params, stream=True, headers=headers, cookies=cookies)
+    response = requests.get(url, stream=True, headers=headers, cookies=cookies)
     try:
            for data in response.iter_content(chunk_size=1024):
                       print(data)
