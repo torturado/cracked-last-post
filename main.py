@@ -38,12 +38,17 @@ while True:
         posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
         for post in posts:
             title = post.find('span', {'class': 'post_link'}).find('a').text
-            post_id = post.find('span', {'class': 'post_link'}).find('a').get('href')
             author = post.find('span', {'class': 'latest-post-uname'}).find('a').text
             link = post.find('span', {'class': 'post_link'}).find('a').get('href')
             link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')
             profile_picture = post.find('img', {'class': 'latest_post_avatars'}).get('src')
-            message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
+            """Go inside the post via link and look for class <a class=nav-seperator"""
+            likk = "https://cracked.io/{}".format(link)
+            r_inside = requests.get(likk, stream=True, headers=headers, cookies=cookies)
+            soup_inside = BeautifulSoup(r_inside.text, 'html.parser')
+            post_inside = soup_inside.find('div', {'class': 'navigation hide-mobile'}).find('a').text
+            category = post_inside
+            message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + "in categories: " + category
 
             if profile_picture.startswith("https://static.cracked.io/"):
                 pass
