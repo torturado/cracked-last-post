@@ -61,10 +61,11 @@ while True:
             message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
 
             """If profile_picture starts with a http, it will be ignored"""
-            if profile_picture.startswith("http"):
-                profile_picture = ""
+            if profile_picture.startswith("https://static.cracked.to") or profile_picture.startswith("https://static.cracked.io"):
+                pass
 
-            elif not profile_picture.startswith("http"):
+            """If profile_picture does not start with a http, it will add "https://static.cracked.io/" to the beginning"""
+            if not profile_picture.startswith("https://static.cracked.to") or profile_picture.startswith("https://static.cracked.io"):
                 profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
                 profile_picture = ("https://static.cracked.io/" + profile_picture)
             
