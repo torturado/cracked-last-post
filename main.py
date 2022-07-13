@@ -72,5 +72,13 @@ while True:
             else:
                 break
         sleep(5)
+    
     except requests.exceptions.ChunkedEncodingError:
+        print("Error ChunkedEncodingError")
+        sleep(5)
+        continue
+    
+    except requests.exceptions.ConnectionError:
+        print("Error ConnectionError")
+        sleep(5)
         continue
