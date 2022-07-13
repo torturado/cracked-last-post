@@ -47,8 +47,8 @@ while True:
         if not profile_picture.startswith("https://static.cracked.io/"):
             profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
             profile_picture = ("https://static.cracked.io/" + profile_picture)
-        else:
-            continue
+        if profile_picture.startswith("https://static.cracked.io/"):
+            pass
                 
         if last_title != title:
             last_title = title
