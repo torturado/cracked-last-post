@@ -1,5 +1,4 @@
 bs4==0.0.1
 discord.py==1.5.1
 requests==2.25.0
-teapot==0.13.1
 telegram==12.8
