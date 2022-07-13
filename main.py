@@ -44,6 +44,11 @@ while True:
                 profile_picture = post.find('span', {'class': 'latest-post-uname'}).find('a').find('img').get('src')
                 message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
 
+                if not profile_picture.startswith("https://static.cracked.io/"):
+                    profile_picture = "https://static.cracked.io/{}".format(profile_picture)
+                    profile_picture = profile_picture.replace("avatars/", "avatars//", 1)
+                    profile_picture = profile_picture.split("?")[0]
+                      
                 bot.sendPhoto(chat_id=chat_id,
                                     photo=profile_picture,
                                     caption="Se ha encontrado una coincidencia!:",
