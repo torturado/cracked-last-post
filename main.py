@@ -9,7 +9,7 @@ alert = ".LOLI" or "CONFIG"
 # ---------------------------------
 
 
-
+url = "https://cracked.io/"
 
 bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
@@ -31,7 +31,12 @@ headers = {
 last_title = ""
 
 while True:
-    r = requests.get('https://cracked.io/', cookies=cookies, headers=headers)
+    response = requests.get(url, params=params, stream=True, headers=headers, cookies=cookies)
+    try:
+           for data in response.iter_content(chunk_size=1024)
+           print(data)
+    except ChunkEncodingError as ex:
+           print(f"Invalid chunk encoding {str(ex)}")
     soup = BeautifulSoup(r.text, 'html.parser')
     posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
     for post in posts:
