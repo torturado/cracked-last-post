@@ -53,9 +53,10 @@ while True:
             text = ""
             for i in range(number_of_cats):
                 """In the last number, don't put a comma"""
-                text += post_inside[i].text + ", "
                 if i == number_of_cats - 1:
                     text += post_inside[i].text
+                else:
+                    text += post_inside[i].text + ", "
             category = text
             message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
 
