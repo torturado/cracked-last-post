@@ -32,7 +32,10 @@ headers = {
 last_title = ""
 
 while True:
-    r = requests.get(url, stream=True, headers=headers, cookies=cookies)
+    try:
+        r = requests.get(url, stream=True, headers=headers, cookies=cookies)
+    except requests.exceptions.ChunkedEncodingError:
+        continue
     soup = BeautifulSoup(r.text, 'html.parser')
     posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
     for post in posts:
@@ -44,11 +47,13 @@ while True:
         profile_picture = post.find('img', {'class': 'latest_post_avatars'}).get('src')
         message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
 
-        if not profile_picture.startswith("https://static.cracked.io/"):
-            profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
-            profile_picture = ("https://static.cracked.io/" + profile_picture)
         if profile_picture.startswith("https://static.cracked.io/"):
             pass
+
+        elif not profile_picture.startswith("https://static.cracked.io/"):
+            profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
+            profile_picture = ("https://static.cracked.io/" + profile_picture)
+        
                 
         if last_title != title:
             last_title = title
