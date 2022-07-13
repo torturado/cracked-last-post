@@ -46,8 +46,17 @@ while True:
             likk = "https://cracked.io/{}".format(link)
             r_inside = requests.get(likk, stream=True, headers=headers, cookies=cookies)
             soup_inside = BeautifulSoup(r_inside.text, 'html.parser')
-            post_inside = soup_inside.find('div', {'class': 'navigation hide-mobile'}).find('a').text
-            category = post_inside
+            """Get the number of class nav-seperator"""
+            number_of_cats = len(soup_inside.find_all('a', {'class': 'nav-seperator'}))
+            post_inside = soup_inside.find_all('a', {'class': 'nav-seperator'})
+            """Get 4 text in total from post_inside"""
+            text = ""
+            for i in range(number_of_cats):
+                """In the last number, don't put a comma"""
+                text += post_inside[i].text + ", "
+                if i == number_of_cats - 1:
+                    text += post_inside[i].text
+            category = text
             message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
 
             if profile_picture.startswith("https://static.cracked.io/"):
