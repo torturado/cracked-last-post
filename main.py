@@ -32,11 +32,6 @@ last_title = ""
 
 while True:
     r = requests.get(url, stream=True, headers=headers, cookies=cookies)
-    try:
-           for data in response.iter_content(chunk_size=1024):
-                      print(data)
-    except ChunkEncodingError as ex:
-           print(f"Invalid chunk encoding {str(ex)}")
     soup = BeautifulSoup(r.text, 'html.parser')
     posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
     for post in posts:
