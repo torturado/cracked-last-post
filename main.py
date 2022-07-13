@@ -1,7 +1,10 @@
+import profile
+from tkinter.messagebox import RETRY
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import telegram
+import telebot
 
 # you must configure this parameters
 # ---------------------------------
@@ -31,44 +34,40 @@ headers = {
 last_title = ""
 
 while True:
-    try:
-        r = requests.get(url, stream=True, headers=headers, cookies=cookies)
-        soup = BeautifulSoup(r.text, 'html.parser')
-        posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
-        for post in posts:
-                title = post.find('span', {'class': 'post_link'}).find('a').text
-                post_id = post.find('span', {'class': 'post_link'}).find('a').get('href')
-                author = post.find('span', {'class': 'latest-post-uname'}).find('a').text
-                link = post.find('span', {'class': 'post_link'}).find('a').get('href')
-                link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')
-                profile_picture = post.find('span', {'class': 'latest-post-uname'}).find('a').find('img').get('src')
-                message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
+    r = requests.get(url, stream=True, headers=headers, cookies=cookies)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
+    for post in posts:
+        title = post.find('span', {'class': 'post_link'}).find('a').text
+        post_id = post.find('span', {'class': 'post_link'}).find('a').get('href')
+        author = post.find('span', {'class': 'latest-post-uname'}).find('a').text
+        link = post.find('span', {'class': 'post_link'}).find('a').get('href')
+        link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')
+        profile_picture = post.find('img', {'class': 'latest_post_avatars'}).get('src')
+        message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
 
-                if not profile_picture.startswith("https://static.cracked.io/"):
-                    profile_picture = "https://static.cracked.io/{}".format(profile_picture)
-                    profile_picture = profile_picture.replace("avatars/", "avatars//", 1)
-                    profile_picture = profile_picture.split("?")[0]
-                      
-                bot.sendPhoto(chat_id=chat_id,
-                                    photo=profile_picture,
-                                    caption="Se ha encontrado una coincidencia!:",
-                                    disable_web_page_preview=True,
-                                    parse_mode=telegram.ParseMode.HTML,
-                )
+        if not profile_picture.startswith("https://static.cracked.io/"):
+            profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
+            profile_picture = ("https://static.cracked.io/" + profile_picture)
+        else:
+            continue
                 
-                if last_title != title:
-                    last_title = title
+        if last_title != title:
+            last_title = title
 
-                    if alert in title:
-                        print("Se ha encontrado una coincidencia! " + title)
+            if alert in title:
+                print("Se ha encontrado una coincidencia! " + title)
 
-                    bot.sendMessage(chat_id=chat_id,
-                                    text=message,
-                                    disable_web_page_preview=True,
-                                    parse_mode=telegram.ParseMode.HTML,
-                    )
-                else:
-                    break
-        sleep(5)
-    except:
-        pass
+            bot.sendMessage(chat_id=chat_id,
+                              text=profile_picture,
+            )
+        
+            bot.sendMessage(chat_id=chat_id,
+                            text=message,
+                            disable_web_page_preview=True,
+                            parse_mode=telegram.ParseMode.HTML,
+            )
+            
+        else:
+            break
+    sleep(5)
