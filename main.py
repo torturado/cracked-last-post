@@ -15,11 +15,23 @@ bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
 chat_id = '-1001597696937'
 
+"""Add cookies for the requests.get"""
+cookies = {'PHPSESSID': 'bimr9fcf952l5dmvh55pf5qlpc',
+           'cf_clearance': 'IO4oAvHbHPk48k7TtAVK4jd1HTPx_Q2clDPQDjfZ0tw-1657711150-0-250',
+           'csrfp_token': '33ed1ce66c',
+           '__cf_bm': 'D2UO0.qDEdMXhiRyZN1KJ.mTHtCWeYPWWDx6Rbm19sA-1657712023-0-AbphBzWtNOU1Rw7bC9G0YP43Ebt51jZLl9nseW/ZO0OAYqBcygwGexsYXvLWo/wq3BWvKpgu8uIMpRIGbq6RmvbCTO26NTJpLZK8HS9qXbj5ugotljn2ytAj4LLx6cBZ4w==',
+           'sid': '3e0711b721a533577b7e7476980517b9'}
+
+"""Add headers for the requests.get"""
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0'
+}
+
 # The first post will always be saved in this variable, if a new post has the same title, it will be ignored
 last_title = ""
 
 while True:
-    r = requests.get('https://cracked.io/')
+    r = requests.get('https://cracked.io/', cookies=cookies, headers=headers)
     soup = BeautifulSoup(r.text, 'html.parser')
     posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
     for post in posts:
