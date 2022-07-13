@@ -32,6 +32,9 @@ last_title = ""
 
 while True:
     r = requests.get(url, stream=True, headers=headers, cookies=cookies)
+    for chunk in r.iter_content(chunk_size=1024):
+           if chunk:
+                      print(chunk)
     soup = BeautifulSoup(r.text, 'html.parser')
     posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
     for post in posts:
@@ -55,4 +58,4 @@ while True:
                 )
             else:
                 break
-    sleep(10)
+    sleep(5)
