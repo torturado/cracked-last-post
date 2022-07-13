@@ -1,5 +1,4 @@
 import profile
-from tkinter.messagebox import RETRY
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
