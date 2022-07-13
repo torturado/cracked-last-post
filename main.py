@@ -5,7 +5,7 @@ import telegram
 
 # you must configure this parameters
 # ---------------------------------
-alert = input("What word? ")
+alert = ".LOLI" or "CONFIG"
 # ---------------------------------
 
 
