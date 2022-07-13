@@ -40,9 +40,17 @@ while True:
                 post_id = post.find('span', {'class': 'post_link'}).find('a').get('href')
                 author = post.find('span', {'class': 'latest-post-uname'}).find('a').text
                 link = post.find('span', {'class': 'post_link'}).find('a').get('href')
-                link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')  
+                link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')
+                profile_picture = post.find('span', {'class': 'latest-post-uname'}).find('a').find('img').get('src')
                 message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
 
+                bot.sendPhoto(chat_id=chat_id,
+                                    photo=profile_picture,
+                                    caption="Se ha encontrado una coincidencia!:",
+                                    disable_web_page_preview=True,
+                                    parse_mode=telegram.ParseMode.HTML,
+                )
+                
                 if last_title != title:
                     last_title = title
 
