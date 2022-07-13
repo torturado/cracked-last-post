@@ -48,7 +48,7 @@ while True:
             soup_inside = BeautifulSoup(r_inside.text, 'html.parser')
             post_inside = soup_inside.find('div', {'class': 'navigation hide-mobile'}).find('a').text
             category = post_inside
-            message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + "in categories: " + category
+            message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
 
             if profile_picture.startswith("https://static.cracked.io/"):
                 pass
