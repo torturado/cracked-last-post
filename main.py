@@ -31,31 +31,31 @@ headers = {
 last_title = ""
 
 while True:
-    r = requests.get(url, stream=True, headers=headers, cookies=cookies)
-    for chunk in r.iter_content(chunk_size=1024):
-           if chunk:
-                      print(chunk)
-    soup = BeautifulSoup(r.text, 'html.parser')
-    posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
-    for post in posts:
-            title = post.find('span', {'class': 'post_link'}).find('a').text
-            post_id = post.find('span', {'class': 'post_link'}).find('a').get('href')
-            author = post.find('span', {'class': 'latest-post-uname'}).find('a').text
-            link = post.find('span', {'class': 'post_link'}).find('a').get('href')
-            link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')  
-            message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
+    try:
+        r = requests.get(url, stream=True, headers=headers, cookies=cookies)
+        soup = BeautifulSoup(r.text, 'html.parser')
+        posts = soup.find_all('table', {'class': 'tborder latestthreads_table'})
+        for post in posts:
+                title = post.find('span', {'class': 'post_link'}).find('a').text
+                post_id = post.find('span', {'class': 'post_link'}).find('a').get('href')
+                author = post.find('span', {'class': 'latest-post-uname'}).find('a').text
+                link = post.find('span', {'class': 'post_link'}).find('a').get('href')
+                link_author = post.find('span', {'class': 'latest-post-uname'}).find('a').get('href')  
+                message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author)
 
-            if last_title != title:
-                last_title = title
+                if last_title != title:
+                    last_title = title
 
-                if alert in title:
-                    print("Se ha encontrado una coincidencia! " + title)
+                    if alert in title:
+                        print("Se ha encontrado una coincidencia! " + title)
 
-                bot.sendMessage(chat_id=chat_id,
-                                text=message,
-                                disable_web_page_preview=True,
-                                parse_mode=telegram.ParseMode.HTML,
-                )
-            else:
-                break
-    sleep(5)
+                    bot.sendMessage(chat_id=chat_id,
+                                    text=message,
+                                    disable_web_page_preview=True,
+                                    parse_mode=telegram.ParseMode.HTML,
+                    )
+                else:
+                    break
+        sleep(5)
+    except:
+        pass
