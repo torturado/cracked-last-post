@@ -59,10 +59,11 @@ while True:
             category = text
             message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
 
-            if profile_picture.startswith("https://static.cracked.io/"):
-                pass
+            """If profile_picture starts with a http, it will be ignored"""
+            if profile_picture.startswith("http"):
+                profile_picture = ""
 
-            elif not profile_picture.startswith("https://static.cracked.io/"):
+            elif not profile_picture.startswith("http"):
                 profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
                 profile_picture = ("https://static.cracked.io/" + profile_picture)
             
