@@ -63,7 +63,7 @@ while True:
             if not profile_picture.startswith("https://static.cracked.io/"):
                 profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
                 profile_picture = "https://static.cracked.io/" + profile_picture
-            if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
+            elif profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
                 profile_picture = profile_picture.replace("https://static.cracked.io/", "")
                     
             if last_title != title:
