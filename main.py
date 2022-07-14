@@ -16,11 +16,11 @@ bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 chat_id = '-1001597696937'
 
 """Add cookies for the requests.get"""
-cookies = {'PHPSESSID': 'bimr9fcf952l5dmvh55pf5qlpc',
-           'cf_clearance': 'IO4oAvHbHPk48k7TtAVK4jd1HTPx_Q2clDPQDjfZ0tw-1657711150-0-250',
-           'csrfp_token': '33ed1ce66c',
-           '__cf_bm': 'D2UO0.qDEdMXhiRyZN1KJ.mTHtCWeYPWWDx6Rbm19sA-1657712023-0-AbphBzWtNOU1Rw7bC9G0YP43Ebt51jZLl9nseW/ZO0OAYqBcygwGexsYXvLWo/wq3BWvKpgu8uIMpRIGbq6RmvbCTO26NTJpLZK8HS9qXbj5ugotljn2ytAj4LLx6cBZ4w==',
-           'sid': '3e0711b721a533577b7e7476980517b9'}
+cookies = {'PHPSESSID': '21ue9a5qqroomap02ai2m7es39',
+           'cf_clearance': 'aPOP4Mzfe7Lt13tkCc.rAO_pbZl4o2H1Z4fIv7qRQEI-1657791103-0-250',
+           'csrfp_token': '6445a631fa',
+           '__cf_bm': 'Cigfb.i_L1pkrvVaHIeBfpJs7rQeZaXbc9C6ctWUw2I-1657792123-0-AVIOJ/0yHx3/ZG75bQBq7E4Sspy67eRzdnmaLD5ujhUEqzPSjDiFt3qBIUIbEzs7HyrQV0PQDi2rmz6jeeOZy2hNS5m0LQWe+zDDfrV2LOtBNG14C1hrtZNyc1GfyJTH/w==',
+           'sid': '34149d69d4431b8a9eeae75acac2b0b7'}
 
 """Add headers for the requests.get"""
 headers = {
@@ -62,17 +62,12 @@ while True:
             if not profile_picture.startswith("https://static.cracked.io/images/default_avatar.png") or not profile_picture.startswith("https://static.cracked.to/images/transparent.png"):
                 profile_picture = profile_picture.replace("avatars/", "avatars//").replace("./", "").split("?")[0].replace("\n", "")
                 profile_picture = ("https://static.cracked.io/" + profile_picture)
-            else:
-                pass
-            
+           
             if profile_picture.startswith("https://static.cracked.io/images/default_avatar.png"):
                 profile_picture = profile_picture.replace("https://static.cracked.io/", "")
-            else:
-                pass
+                
             if profile_picture.startswith("https://static.cracked.to/images/transparent.png"):
                 profile_picture = profile_picture.replace("https://static.cracked.to/", "")
-            else:
-                pass
             
                     
             if last_title != title:
@@ -93,14 +88,14 @@ while True:
                 
             else:
                 break
-        sleep(1.666666666666667)
+        sleep(3)
     
     except requests.exceptions.ChunkedEncodingError:
         print("Error ChunkedEncodingError")
-        sleep(1.666666666666667)
+        sleep(5)
         continue
     
     except requests.exceptions.ConnectionError:
         print("Error ConnectionError")
-        sleep(1.666666666666667)
+        sleep(5)
         continue
