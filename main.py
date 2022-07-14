@@ -88,14 +88,14 @@ while True:
                 
             else:
                 break
-        sleep(3)
+        sleep(2)
     
     except requests.exceptions.ChunkedEncodingError:
         print("Error ChunkedEncodingError")
-        sleep(5)
+        sleep(3)
         continue
     
     except requests.exceptions.ConnectionError:
         print("Error ConnectionError")
-        sleep(5)
+        sleep(3)
         continue
