@@ -57,7 +57,7 @@ while True:
                 else:
                     text += post_inside[i].text + ", "
             category = text
-            message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
+            message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
             """if src of profile_picture finishes with "default_avatar.png" or with "transparent.png", remove "https://static.cracked.io/" from start"""
             if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
