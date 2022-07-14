@@ -60,11 +60,12 @@ while True:
             message = "New post: " + "<a href='https://cracked.io/{}'>{}</a>".format(link, title) + " by " + "<a href='{}'>{}</a>".format(link_author, author) + " in categories: " + category
 
             """if src of profile_picture finishes with "default_avatar.png" or with "transparent.png", remove "https://static.cracked.io/" from start"""
-            if not profile_picture.startswith("https://static.cracked.io/"):
+            if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
+                profile_picture = profile_picture.replace("https://static.cracked.io/", "")
+            
+            elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
                 profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
                 profile_picture = "https://static.cracked.io/" + profile_picture
-            elif profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                profile_picture = profile_picture.replace("https://static.cracked.io/", "")
                     
             if last_title != title:
                 last_title = title
