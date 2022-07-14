@@ -9,7 +9,7 @@ alert = ".LOLI" or "CONFIG"
 # ---------------------------------
 
 
-url = "https://cracked.io/"
+url = "https://cracked.io/index.php"
 
 bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
