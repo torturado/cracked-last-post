@@ -97,7 +97,7 @@ while True:
                     
                 else:
                     break
-        sleep(3)
+        sleep(5)
 
         """Do the same requests for all the urls"""
         r = requests.get(url2, stream=True, headers=headers, cookies=cookies)
@@ -152,7 +152,7 @@ while True:
                 else:
                     break
         
-        sleep(3)
+        sleep(5)
 
         r = requests.get(url3, stream=True, headers=headers, cookies=cookies)
         soup = BeautifulSoup(r.text, 'html.parser')
@@ -206,7 +206,7 @@ while True:
                 else:
                     break
 
-        sleep(3)
+        sleep(5)
 
         r = requests.get(url4, stream=True, headers=headers, cookies=cookies)
         soup = BeautifulSoup(r.text, 'html.parser')
@@ -260,7 +260,7 @@ while True:
                 else:
                     break
 
-        sleep(3)
+        sleep(5)
         r = requests.get(url5, stream=True, headers=headers, cookies=cookies)
         soup = BeautifulSoup(r.text, 'html.parser')
         if soup.find('form', class_='challenge-form interactive-form'):
@@ -313,7 +313,7 @@ while True:
                 else:
                     break
         
-        sleep(3)
+        sleep(5)
         r = requests.get(url6, stream=True, headers=headers, cookies=cookies)
         soup = BeautifulSoup(r.text, 'html.parser')
         if soup.find('form', class_='challenge-form interactive-form'):
@@ -366,7 +366,7 @@ while True:
                 else:
                     break                        
 
-        sleep(3)
+        sleep(5)
     
     except requests.exceptions.ChunkedEncodingError:
         print("Error ChunkedEncodingError")
