@@ -404,7 +404,7 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Cracking tools categories"
                 category = text
-                message = f"⚠ Detectada Filmete ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
+                message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
 
@@ -416,8 +416,8 @@ while True:
                 elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
                     profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
                     profile_picture = "https://static.cracked.io/" + profile_picture
-                
 
+                
                 if last_title7 != title:
                     last_title7 = title
 
@@ -435,6 +435,11 @@ while True:
                                     parse_mode=telegram.ParseMode.HTML,
                                     reply_to_message_id=message_id,
                     )
+                    
+                else:
+                    break                        
+
+        sleep(3)
 
     except requests.exceptions.ChunkedEncodingError:
         print("Error ChunkedEncodingError")
