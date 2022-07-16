@@ -5,7 +5,7 @@ import telegram
 
 # you must configure this parameters
 # ---------------------------------
-alert = ("spain", "Spain", "SPAIN", "FRESH", "Fresh", "CONFIG", "config") # minus or mayus doesn't matter
+alert = "spain" or "Spain" or "SPAIN" or "FRESH" or "Fresh" or "CONFIG" or "config" # minus or mayus doesn't matter
 # ---------------------------------
 
 
@@ -424,7 +424,7 @@ while True:
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
                         message = message + "@kifera2"
-                    
+
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
                     ).message_id
