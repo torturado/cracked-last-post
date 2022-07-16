@@ -402,7 +402,7 @@ while True:
                 link = post.find('span', {'class': ''}).find('a').get('href')
                 link_author = post.find('div', {'class': 'author smalltext'}).find('a').get('href')
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
-                text = "Cracking tools categories"
+                text = "Databases categories"
                 category = text
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
