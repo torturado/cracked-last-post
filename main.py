@@ -5,7 +5,7 @@ import telegram
 
 # you must configure this parameters
 # ---------------------------------
-alert = ".LOLI" or "CONFIG"
+alert = ("spain", "Spain", "SPAIN", "FRESH", "Fresh", "CONFIG", "config") # minus or mayus doesn't matter
 # ---------------------------------
 
 
@@ -15,6 +15,7 @@ url3 = "https://cracked.io/Forum-Silverbullet?sortby=started&order=desc&datecut=
 url4 = "https://cracked.io/Forum-Accounts?sortby=started&order=desc&datecut=9999&prefix=0"
 url5 = "https://cracked.io/Forum-Proxies?sortby=started&order=desc&datecut=9999&prefix=0"
 url6 = "https://cracked.io/Forum-Cracking-Tools?sortby=started&order=desc&datecut=9999&prefix=0"
+url7 = "https://cracked.io/Forum-Databases?sortby=started&order=desc&datecut=9999&prefix=0"
 
 bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
@@ -37,6 +38,7 @@ last_title3 = ""
 last_title4 = ""
 last_title5 = ""
 last_title6 = ""
+last_title7 = ""
 
 
 
@@ -85,6 +87,7 @@ while True:
 
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
 
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
@@ -137,14 +140,17 @@ while True:
                 
                 if last_title2 != title:
                     last_title2 = title
-
+                    
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
 
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
                     ).message_id
                     
+                    """If the title has a word from alert, add the alert to the message"""
+
                     bot.sendMessage(chat_id=chat_id,
                                     text=message,
                                     disable_web_page_preview=True,
@@ -195,6 +201,7 @@ while True:
 
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
 
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
@@ -250,6 +257,7 @@ while True:
 
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
 
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
@@ -304,6 +312,7 @@ while True:
 
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
 
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
@@ -358,6 +367,7 @@ while True:
 
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
 
                     message_id = bot.sendMessage(chat_id=chat_id,
                                     text=profile_picture,
@@ -374,7 +384,58 @@ while True:
                     break                        
 
         sleep(3)
-    
+
+        r = requests.get(url7, stream=True, headers=headers, cookies=cookies)
+        soup = BeautifulSoup(r.text, 'html.parser')
+        if soup.find('form', class_='challenge-form interactive-form'):
+            print("Verification Needed")
+            while soup.find('form', class_='challenge-form interactive-form'):
+                r = requests.get(url7, stream=True, headers=headers, cookies=cookies)
+                soup = BeautifulSoup(r.text, 'html.parser')
+                print("Refreshing...")
+                sleep(5)
+        posts = soup.find_all('tr', {'class': 'inline_row forum2'})
+        for post in posts:
+            if posts.index(post) == 0:
+                title = post.find('span', {'class': ''}).find('a').find('span').text
+                author = post.find('div', {'class': 'author smalltext'}).find('a').text
+                link = post.find('span', {'class': ''}).find('a').get('href')
+                link_author = post.find('div', {'class': 'author smalltext'}).find('a').get('href')
+                profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
+                text = "Cracking tools categories"
+                category = text
+                message = f"⚠ Detectada Filmete ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
+
+
+
+
+
+                if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
+                    profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
+                
+                elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
+                    profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
+                    profile_picture = "https://static.cracked.io/" + profile_picture
+                
+
+                if last_title7 != title:
+                    last_title7 = title
+
+                    if alert in title:
+                        print("Se ha encontrado una coincidencia! " + title)
+                        message = message + "@kifera2"
+                    
+                    message_id = bot.sendMessage(chat_id=chat_id,
+                                    text=profile_picture,
+                    ).message_id
+                    
+                    bot.sendMessage(chat_id=chat_id,
+                                    text=message,
+                                    disable_web_page_preview=True,
+                                    parse_mode=telegram.ParseMode.HTML,
+                                    reply_to_message_id=message_id,
+                    )
+
     except requests.exceptions.ChunkedEncodingError:
         print("Error ChunkedEncodingError")
         sleep(5)
