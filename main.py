@@ -1,11 +1,14 @@
+from http.client import BAD_REQUEST
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import telegram
 import os
+from telegram import ParseMode
 
 
 cf_clearance = os.getenv("cf_clearance")
+
 
 # you must configure this parameters
 # ---------------------------------
@@ -71,6 +74,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Configs category"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -88,7 +94,7 @@ while True:
                     
                 if last_title1 != title:
                     last_title1 = title
-
+                
                     if alert in title:
                         print("Se ha encontrado una coincidencia! " + title)
                         message = message + "@kifera2"
@@ -128,6 +134,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Openbullet categories"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -186,6 +195,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Silverbullet categories"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -242,6 +254,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Accounts categories"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -297,6 +312,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Proxies categories"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -325,7 +343,7 @@ while True:
                     bot.sendMessage(chat_id=chat_id,
                                     text=message,
                                     disable_web_page_preview=True,
-                                    parse_mode=telegram.ParseMode.HTML,
+                                    parse_mode=ParseMode.HTML,
                                     reply_to_message_id=message_id,
                     )
                     
@@ -352,6 +370,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Cracking tools categories"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -408,6 +429,9 @@ while True:
                 profile_picture = post.find('img', {'class': 'last-post-avatar'}).get('src')
                 text = "Databases categories"
                 category = text
+                if "<" or ">" in title:
+                    title = title.replace("<", "")
+                    title = title.replace(">", "")
                 message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
 
@@ -459,3 +483,4 @@ while True:
         print("Error RetryAfter")
         sleep(5)
         continue
+    
