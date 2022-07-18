@@ -2,9 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import telegram
-import virtualenv
+import os
 
-cf_clearance = virtualenv.path_search('cf_clearance')
+
+cf_clearance = os.getenv("cf_clearance")
 
 # you must configure this parameters
 # ---------------------------------
