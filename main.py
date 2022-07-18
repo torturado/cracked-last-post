@@ -454,3 +454,8 @@ while True:
         print("Error ConnectionError")
         sleep(5)
         continue
+
+    except telegram.error.RetryAfter:
+        print("Error RetryAfter")
+        sleep(5)
+        continue
