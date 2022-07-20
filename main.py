@@ -522,20 +522,15 @@ def main():
         # For a while() loop, the program will sleep for 5 seconds and then check if there are any new messages.
         # If there are, it will call the handle_message function.
         while True:
-            try:
-                updates = bot.getUpdates(offset=update_id, timeout=5)
-                if updates:
-                    for update in updates:
-                        if update.message:
-                            if update.message.text.find(".") != -1:
-                                handle_message(update.message)
-                            else:
-                                print("No ip address")
-                            update_id = update.update_id + 1
-            except:
-                print("Error")
-                sleep(5)
-                continue
+            updates = bot.getUpdates(offset=update_id, timeout=5)
+            if updates:
+                for update in updates:
+                    if update.message:
+                        if update.message.text.find(".") != -1:
+                            handle_message(update.message)
+                        else:
+                            print("No ip address")
+                        update_id = update.update_id + 1
 
     
 if __name__ == '__main__':
