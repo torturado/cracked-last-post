@@ -27,7 +27,7 @@ bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 chat_id = '-1001597696937'
 
 """Add cookies for the requests.get"""
-cookies = {'hc_accessibility': 'EDsP2bDIggc+3a5VW5gfhTxz4+7vgp7geQ5yTkeTYelbaJJJNwvD84VmKddjmUiUvp18wXn2zvEkyVD7YzdMUSUbWXe5b8hkSnu4vsbjvvrV6EQFsEok406BxB0Hj2wlsXIAUVgqmO+1iN+xO8SpcVSN8ooK8KI91OaOiDD/nv0W0SjT8Hbn2KXG0cbrsATI94te50ofjKXjRtscHcEZWkL3IB0DEm5MopK3j9qX4w70mCfwEThTXWNSsscIm3/eTT8UxhWXXY8ePXmAMl5Ox9qykNsvz5WkvGsf4A0LhN5I4OUpaXaj/BclSaNEhhtf2xnIyRR/wbW05SBMqzSB9fgBIrMdl/0/YkeoBLkHn9hnQOWtww4GZonQKiJpBn0Q8bfnu0iwMjkZFUQ1aFje7WxrJQIa4IgEOVOqK+xm2mrp0vVfznjLElHqTDx/kCGecDqWdzEvfUEWOsZ4K4Fb7Gouls60hdkqpRbbSPmXUq3xzvvHlOHg2867/Ruksm6XLGThSNDbkYlz//j0Y18wXn2zvEkyVD7YzdLzYyfHXn23VhZSsvziVh0IKvy6bpxNJRUc9O+6mXoSwlpx+9PsNl+2HQl3p4Vq1Mm3+vvjYv6qQWs2Q1CpppHgaJD/OVbRw2zkUio+kXjNNqx2fPTSK99zAXlvgXJOPlV5cUCRQSq4+5YG2qkLzhB7ymLHAC7LkDL6Gl6no+OY/WZn576/FUXg0NJqovrj17LaoCbNS2/a8p6/eMEzPScywzZGJL8UgVmCD+TaW5ofvHpH1c58ej4c1gkdIvpWxKTjs0k2sjkCDKVsaVp6d9GWLj/rHxv9x9rRvsJhUqLv5XuPFTS77qRXBYeGuUUzuoD2X0s9KebXUpzMkNryBK260OVvgUdZy0pXQFTEV2bVYe5JNaiWLDdp0pFIiU3t9izoceB0CGGAS/Gyp3P5Pib2uRYYL0scvCHMwzq9YKvb0dfF213pGkW00mvZr2TZSt413c6l744d5O+zWVXv++b0th5x6mNI94fc5y5GLGm7Shg7',
+cookies = {'hc_accessibility': 'EDsP2bDIggc+3a5VW5gfhTxz4+7vgp7geQ5yTkeTYelbaJJJNwvD84VmKddjmUiUvp3E8vqF3mOkRAQlXVETI7u1TjADlL85dXo7aMjJXyv5tzQWCn4Ed06BxB0Hj2wlsXIAUVgqmO+1iN+xO8SpcVSN8ooK8KI91OaOiDD/nv0W0SjT8Hbn2KXG0cbrsATI94te50ofjKXjRtscHcEZWkL3IB0DEm5MopK3j9qX4w70mCfwEThTXWNSsscIm3/eTT8UxhWXXY8ePXmAMl5Ox9qykNsvz5WkvGsf4A0LhN5I4OUpaXaj/BclSaNEhhtf2xnIyRR/wbW05SBMqzSB9fgBIrMdl/0/YkeoBLkHn9hnQOWtww4GZonQKiJpBn0Q8bfnu0iwMjkZFUQ1aFje7WxrJQIa4IgEOVOqK+xm2mrp0vVfznjLElHqTDx/kCGecDqWdzEvfUEWOsZ4K4Fb7Gouls60hdkqpRbbSPmXUq3xzvvHlOHg2867/Ruksm6XLGThSNDbkYlz//j0Y332zzaKosMEPxQMgXAo3h9CHjlBKbWccPCiVh0IKvy6bpxNJRUc9O+6mXoSwlpx+9PsNl+2HQl3p4Vq1Mm3+vvjYv6qQWs2Q1CpppHgaJD/OVbRw2zkUio+kXjNNqx2fPTSK99zAXlvgXJOPlV5cUCRQSq4+5YG2qkLzhB7ymLHAC7LkDL6Gl6no+OY/WZn576/FUXg0NJqovrj17LaoCbNS2/a8p6/eMEzPScywzZGJL8UgVmCD+TaW5ofvHpH1c58ej4c1gkdIvpWxKTjs0k2sjkCDKVsaVp6d9GWLj/rHxv9x9rRvsJhUqLv5XuPFTS77qRXBYeGuUUzuoD2X0s9KebXUpzMkNryBK260OVvgUdZy0pXQFTEV2bVYe5JNaiWLDdp0pFIiU3t9izoceB0CGGAS/Gyp3P5Pib2uRYYL0scvCHMwzq9YKvb0dfF213pGkW00mvZr2TZSt413c6l744d5O+zWVXv++b0th5x6mNI94fc5y5GLGm7Shg7',
            'cf_clearance': 'McqmOvPwJEjmoMt6_x.4coqg6sSqjubAVM94GIY3A0Q-1658302341-0-250',
            }
 
@@ -57,6 +57,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             """If website has the word 'Verification Need', refresh page until it is not"""
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u https://nowsecure.nl -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -119,6 +124,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             soup = BeautifulSoup(r.text, 'html.parser')
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u " + url + " -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url2, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -180,6 +190,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             soup = BeautifulSoup(r.text, 'html.parser')
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u " + url + " -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url3, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -239,6 +254,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             soup = BeautifulSoup(r.text, 'html.parser')
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u " + url + " -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url4, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -297,6 +317,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             soup = BeautifulSoup(r.text, 'html.parser')
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u " + url + " -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url5, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -355,6 +380,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             soup = BeautifulSoup(r.text, 'html.parser')
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u " + url + " -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url6, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -414,6 +444,11 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             soup = BeautifulSoup(r.text, 'html.parser')
             if soup.find('form', class_='challenge-form interactive-form'):
                 print("Verification Needed")
+                with open('cookies.txt', 'w') as f:
+                    f.write("")
+                os.system("python app.py -u " + url + " -f cookies.txt -v")
+                with open('cookies.txt', 'r') as f:
+                    cookies = f.read()
                 while soup.find('form', class_='challenge-form interactive-form'):
                     r = requests.get(url7, stream=True, headers=headers, cookies=cookies)
                     soup = BeautifulSoup(r.text, 'html.parser')
@@ -491,7 +526,6 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             print("Error Conflict")
             sleep(5)
             continue
-
 
 
 
