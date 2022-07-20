@@ -501,12 +501,10 @@ while True:
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
-    while True:
-        print("getting updates")
-        for update in bot.getUpdates(offset=update_id, timeout=10):
-            update_id = update.update_id + 1
+    for update in bot.getUpdates(offset=update_id, timeout=10):
+        update_id = update.update_id + 1
 
-            if update.message: 
+        if update.message: 
                 """Detect if message has a ip address"""
                 if update.message.text.find(".") != -1:
                     handle_message(update.message)
