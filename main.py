@@ -512,12 +512,12 @@ while True:
         for update in bot.getUpdates(offset=update_id, timeout=10):
             update_id = update.update_id + 1
 
-        if update.message: 
-            """Detect if message has a ip address"""
-            if update.message.text.find(".") != -1:
-                handle_message(update.message)
-            else:
-                print("No ip address")
+            if update.message: 
+                """Detect if message has a ip address"""
+                if update.message.text.find(".") != -1:
+                    handle_message(update.message)
+                else:
+                    print("No ip address")
 
 
         def handle_message(message):
