@@ -487,6 +487,10 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             print("Error TimedOut")
             sleep(5)
             continue
+        except telegram.error.Conflict:
+            print("Error Conflict")
+            sleep(5)
+            continue
 
 
 
