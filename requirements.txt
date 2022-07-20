@@ -2,6 +2,4 @@ requests
 bs4
 python-telegram-bot
 SafoneAPI
-dotenv
-json
 logging
