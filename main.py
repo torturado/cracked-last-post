@@ -7,7 +7,6 @@ from telegram import ParseMode
 import json
 from multiprocessing import Process
 import logging
-from twocaptcha import TwoCaptcha
 
 # you must configure this parameters
 # ---------------------------------
@@ -45,20 +44,6 @@ last_title4 = ""
 last_title5 = ""
 last_title6 = ""
 last_title7 = ""
-
-
-def get_hcaptcha():
-    """Use TwoCaptcha to get captcha answer0"""
-    api_key = '7274a09b0ce67cc849abb554a06d9d7e'
-    
-    result = TwoCaptcha.hcaptcha(api_key, url)
-    if result:
-        return result
-    else:
-        return False
-
-    result = result.replace('')
-
 
 
 def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cookies, headers, last_title1, last_title2, last_title3, last_title4, last_title5, last_title6, last_title7):
@@ -536,7 +521,7 @@ def main():
         # For a while() loop, the program will sleep for 5 seconds and then check if there are any new messages.
         # If there are, it will call the handle_message function.
         while True:
-            updates = bot.getUpdates(offset=update_id, timeout=5)
+            updates = bot.getUpdates(offset=update_id, timeout=10)
             if updates:
                 for update in updates:
                     if update.message:
