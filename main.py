@@ -27,9 +27,7 @@ bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 chat_id = '-1001597696937'
 
 """Add cookies for the requests.get"""
-cookies = {'hc_accessibility': 'EDsP2bDIggc+3a5VW5gfhTxz4+7vgp7geQ5yTkeTYelbaJJJNwvD84VmKddjmUiUvp18wXn2zvEkyVD7YzdMUSUbWXe5b8hkSnu4vsbjvvrV6EQFsEok406BxB0Hj2wlsXIAUVgqmO+1iN+xO8SpcVSN8ooK8KI91OaOiDD/nv0W0SjT8Hbn2KXG0cbrsATI94te50ofjKXjRtscHcEZWkL3IB0DEm5MopK3j9qX4w70mCfwEThTXWNSsscIm3/eTT8UxhWXXY8ePXmAMl5Ox9qykNsvz5WkvGsf4A0LhN5I4OUpaXaj/BclSaNEhhtf2xnIyRR/wbW05SBMqzSB9fgBIrMdl/0/YkeoBLkHn9hnQOWtww4GZonQKiJpBn0Q8bfnu0iwMjkZFUQ1aFje7WxrJQIa4IgEOVOqK+xm2mrp0vVfznjLElHqTDx/kCGecDqWdzEvfUEWOsZ4K4Fb7Gouls60hdkqpRbbSPmXUq3xzvvHlOHg2867/Ruksm6XLGThSNDbkYlz//j0Y18wXn2zvEkyVD7YzdLzYyfHXn23VhZSsvziVh0IKvy6bpxNJRUc9O+6mXoSwlpx+9PsNl+2HQl3p4Vq1Mm3+vvjYv6qQWs2Q1CpppHgaJD/OVbRw2zkUio+kXjNNqx2fPTSK99zAXlvgXJOPlV5cUCRQSq4+5YG2qkLzhB7ymLHAC7LkDL6Gl6no+OY/WZn576/FUXg0NJqovrj17LaoCbNS2/a8p6/eMEzPScywzZGJL8UgVmCD+TaW5ofvHpH1c58ej4c1gkdIvpWxKTjs0k2sjkCDKVsaVp6d9GWLj/rHxv9x9rRvsJhUqLv5XuPFTS77qRXBYeGuUUzuoD2X0s9KebXUpzMkNryBK260OVvgUdZy0pXQFTEV2bVYe5JNaiWLDdp0pFIiU3t9izoceB0CGGAS/Gyp3P5Pib2uRYYL0scvCHMwzq9YKvb0dfF213pGkW00mvZr2TZSt413c6l744d5O+zWVXv++b0th5x6mNI94fc5y5GLGm7Shg7',
-           'cf_clearance': 'McqmOvPwJEjmoMt6_x.4coqg6sSqjubAVM94GIY3A0Q-1658302341-0-250',
-           }
+cookies = {'cf_clearance': 'v1EhUoiRRjNklJF2PC1aokCxkRBgrw_xXUyjPmkTySI-1660142318-0-250'}
 
 """Add headers for the requests.get"""
 headers = {
@@ -53,14 +51,17 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
             """Configs category"""
             r = requests.get(url, stream=True, headers=headers, cookies=cookies)
             soup = BeautifulSoup(r.text, 'html.parser')
-            """If website has the word 'Verification Need', refresh page until it is not"""
             if soup.find('form', class_='challenge-form interactive-form'):
-                print("Verification Needed")
-                while soup.find('form', class_='challenge-form interactive-form'):
-                    r = requests.get(url, stream=True, headers=headers, cookies=cookies)
-                    soup = BeautifulSoup(r.text, 'html.parser')
-                    print("Refreshing...")
-                    sleep(5)
+                # if in page appears an h captcha, solve it with TwoCaptcha and get the cookie 'cf_clearance'
+                r = requests.get("http://2captcha.com/in.php?key=b8ac57e2fd7c9f802d5a491b2edc1e15&method=hcaptcha&sitekey=45fbc4de-366c-40ef-9274-9f3feca1cd6c&pageurl=https://cracked.io/", stream=True)
+                sleep(25)
+                soup = BeautifulSoup(r.text, 'html.parser')
+                # get the captcha id
+                captcha_id = soup.find('div', class_='id').text
+                print(captcha_id)
+                # do a post request to 'url' with the captcha id
+                r = requests.post(url, data={'g-recaptcha-response': captcha_id}, stream=True, headers=headers, cookies=cookies)
+                print(r.text)
             posts = soup.find_all('tr', {'class': 'inline_row forum2'})
             for post in posts:
                 """Get only the 4th post, the first 3 are pinned posts, always the same"""
@@ -77,16 +78,12 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-            
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                    
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                 
                 
                         
@@ -138,18 +135,15 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
-
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                     
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                
+                
+                        
                     if last_title2 != title:
                         last_title2 = title
                         
@@ -199,18 +193,15 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
-
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                     
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                
+                
+                        
                     if last_title3 != title:
                         last_title3 = title
 
@@ -258,18 +249,15 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
-
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                     
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                
+                
+                        
                     if last_title4 != title:
                         last_title4 = title
 
@@ -316,18 +304,15 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
-
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                     
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                
+                
+                        
                     if last_title5 != title:
                         last_title5 = title
 
@@ -374,18 +359,15 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
-
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                     
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                
+                
+                        
                     if last_title6 != title:
                         last_title6 = title
 
@@ -433,18 +415,15 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         title = title.replace(">", "")
                     message = f"⚠ Detectada Filtracion ⚠\n{{\n\t\t'site': <a href=\"https://cracked.io/{link}\">'{title}'</a>,\n\t\t'author': <a href='{link_author}'>'{author}'</a>,\n\t\t'categories': '{category}'\n}}\n\t🔹Cracked.io monitoring system🔹"
 
-
-
-
-
-                    if profile_picture.endswith("default_avatar.png") or profile_picture.endswith("transparent.png"):
-                        profile_picture = "https://static.cracked.io/" + profile_picture.replace("https://static.cracked.io/", "")
                     
-                    elif not profile_picture.endswith("default_avatar.png") or not profile_picture.endswith("transparent.png"):
-                        profile_picture = profile_picture.replace("./", "").replace("/avatars/a", "/avatars//a").split("?")[0].replace("\n", "")
-                        profile_picture = "https://static.cracked.io/" + profile_picture
-
+                    if not profile_picture.endswith("default_avatar.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
                     
+                    elif not profile_picture.endswith("transparent.png"):
+                        profile_picture = profile_picture.split("?")[0].replace("\n", "")
+                
+                
+                        
                     if last_title7 != title:
                         last_title7 = title
 
@@ -521,12 +500,16 @@ def main():
         # For a while() loop, the program will sleep for 5 seconds and then check if there are any new messages.
         # If there are, it will call the handle_message function.
         while True:
+            sleep(5)
             updates = bot.getUpdates(offset=update_id, timeout=10)
             if updates:
                 for update in updates:
                     if update.message:
-                        if update.message.text.find(".") != -1:
-                            handle_message(update.message)
+                        # look if the message is from the bot
+                        if update.message.from_user.username == 'delocosmaninbot':
+                            # look in the message for the word "."
+                            if '.' in update.message.text:
+                                handle_message(update.message)
                         else:
                             print("No ip address")
                         update_id = update.update_id + 1
