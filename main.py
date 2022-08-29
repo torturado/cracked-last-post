@@ -10,7 +10,7 @@ import logging
 
 # you must configure this parameters
 # ---------------------------------
-alert = "spain" or "Spain" or "SPAIN" or "FRESH" or "Fresh" or "CONFIG" or "config" # minus or mayus doesn't matter
+alert = "config"
 # ---------------------------------
 
 
