@@ -533,4 +533,4 @@ def main():
     
 if __name__ == '__main__':
     Process(target=main).start()
-    Process(target=crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cookies, headers, last_title1, last_title2, last_title3, last_title4, last_title5, last_title6, last_title7)).start()
+    Process(target=crackedio(alert, url, url2, url3, url4, url5, url6, url7, url8, bot, chat_id, cookies, headers, last_title1, last_title2, last_title3, last_title4, last_title5, last_title6, last_title7, last_title8)).start()
