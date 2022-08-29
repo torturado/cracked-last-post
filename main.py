@@ -21,6 +21,8 @@ url4 = "https://cracked.io/Forum-Accounts?sortby=started&order=desc&datecut=9999
 url5 = "https://cracked.io/Forum-Proxies?sortby=started&order=desc&datecut=9999&prefix=0"
 url6 = "https://cracked.io/Forum-Cracking-Tools?sortby=started&order=desc&datecut=9999&prefix=0"
 url7 = "https://cracked.io/Forum-Databases?sortby=started&order=desc&datecut=9999&prefix=0"
+url8 = "https://wabetainfo.com/testflight/?search=instagram"
+
 
 bot = telegram.Bot(token='5397486870:AAEQ1AuaEfUeof9NIhrK4dRi5UWwzPNNmJI')
 
@@ -42,9 +44,10 @@ last_title4 = ""
 last_title5 = ""
 last_title6 = ""
 last_title7 = ""
+last_title8 = ""
 
 
-def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cookies, headers, last_title1, last_title2, last_title3, last_title4, last_title5, last_title6, last_title7):
+def crackedio(alert, url, url2, url3, url4, url5, url6, url7, url8, bot, chat_id, cookies, headers, last_title1, last_title2, last_title3, last_title4, last_title5, last_title6, last_title7, last_title8):
     while True:
         try:
             """Fix that sends 2 messages at the same time"""
@@ -444,6 +447,19 @@ def crackedio(alert, url, url2, url3, url4, url5, url6, url7, bot, chat_id, cook
                         
                     else:
                         break                        
+
+            sleep(3)
+
+            r = requests.get(url8, stream=True, headers=headers, cookies=cookies)
+            soup = BeautifulSoup(r.text, 'html.parser')
+            slot = soup.find('span', {'id': 'corners1'}).text
+            if slot == "SLOT AVAILABLE":
+                message = f"Instagram beta disponible!!"
+                bot.sendMessage(chat_id=chat_id,
+                                        text=message,
+                                        disable_web_page_preview=True,
+                                        parse_mode=telegram.ParseMode.HTML,
+                        )
 
             sleep(3)
 
